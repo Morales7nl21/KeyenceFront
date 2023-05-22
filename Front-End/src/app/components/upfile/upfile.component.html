@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="d-flex justify-content-center mt-3 pt-3">
+    <div class="row">
+      <div class="col" [hidden]="isSelectedFile">
+       <h3> Por favor, arrastre su archivo XLSX (EXCEL) para ser analizado</h3>
+      </div>
+    </div>
+  </div>
+  <ngx-dropzone [hidden]="isSelectedFile" (change)="onSelect2($event)" >
+    <ngx-dropzone-label> Arrastre el archivo</ngx-dropzone-label>
+  </ngx-dropzone>
+
+</div>
+
+
+
+
+

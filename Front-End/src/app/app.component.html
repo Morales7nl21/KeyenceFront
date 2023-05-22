@@ -1,0 +1,9 @@
+
+
+
+  <app-navbar></app-navbar>
+  <app-login  [hidden]="getIsLogin()"></app-login>
+
+
+<app-upfile *ngIf="!getIsAccepted()" [hidden]="!getIsLogin()"></app-upfile>
+<app-table-csv *ngIf="getIsAccepted()"></app-table-csv>

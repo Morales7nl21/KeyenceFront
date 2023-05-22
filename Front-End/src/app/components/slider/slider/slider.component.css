@@ -1,0 +1,29 @@
+.img-1{
+  background-image: url("../../../../assets/img/login-1.jpg") ;
+  background-size: cover;
+  background-position: center;
+}
+
+.img-2{
+  background-image: url("../../../../assets/img/login-2.jpg") ;
+  background-size: cover;
+  background-position: center;
+}
+
+.img-3{
+  background-image: url("../../../../assets/img/login-3.jpg") ;
+  background-size: cover;
+  background-position: center;
+}
+.container{
+  width: 100%;
+  background-color: brown;
+}
+
+.carousel-item {
+  height: 38em;
+}
+.item img {
+    position: static;
+    object-fit:cover;
+}

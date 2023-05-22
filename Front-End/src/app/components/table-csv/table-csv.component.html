@@ -1,0 +1,279 @@
+<div class="d-flex justify-content-center">
+  <div [hidden]="!isLoading" class="row">
+    <div class="col"><div class="loader"></div></div>
+  </div>
+  <div [hidden]="isLoading" class="row g-0">
+    <div class="col-sm-12">
+      <!-- Tabla dinámica-->
+      <!-- Titulo-->
+      <!-- Cierre Titulo-->
+      <div class="row">
+        <div class="col col-sm-8">
+          <mat-form-field class="mt-2">
+            <mat-label>Buscar</mat-label>
+            <!-- Al presionar una tecla se manda  ala funcion de filtrado-->
+            <input
+              type="text"
+              matInput
+              (keyup)="filtrar($event)"
+              placeholder="Busqueda"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col col-sm-4 mt-2">
+          <button
+            type="button"
+            (click)="agregarRegistro()"
+            class="btn btn-secondary mt-2"
+          >
+            Agregar registro
+          </button>
+        </div>
+      </div>
+
+      <!-- Inicio de creacion de tabla con los elementos-->
+      <div class="mat-elevation-z8">
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          matSort
+          class="mat-elevation-z8"
+          matSort
+        >
+          <ng-container matColumnDef="user_id">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef>User id</th>
+
+            <td mat-cell *matCellDef="let pu">
+              {{pu.user_id}}
+
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="username">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef>Username</th>
+            <td mat-cell *matCellDef="let pu">
+              {{pu.username}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let pu">
+              {{pu.date}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="punchin">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef>Punch in</th>
+            <td mat-cell *matCellDef="let pu">
+              {{pu.punchin}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="punchout">
+            <th mat-sort-header mat-header-cell *matHeaderCellDef>Punch out</th>
+            <td mat-cell *matCellDef="let pu">
+              {{pu.punchout}}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="delete">
+            <th  mat-header-cell *matHeaderCellDef>Eliminar</th>
+            <td mat-cell *matCellDef="let pu">
+              <button
+                type="button"
+                (click)="deleteData(pu.idexceldata)"
+                class="btn btn-danger"
+              >
+                Eliminar registro
+              </button>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="update">
+            <th  mat-header-cell *matHeaderCellDef>
+              Actualizar
+            </th>
+            <td mat-cell *matCellDef="let pu">
+              <button
+                type="button"
+                (click)="updateData(pu,pu.idexceldata)"
+                class="btn btn-danger"
+              >
+                Actualizar registro
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="headerColumnas"></tr>
+          <tr mat-row *matRowDef="let row; columns: headerColumnas">
+            {{
+              row
+            }}
+          </tr>
+        </table>
+        <!-- Paginadores a tabla-->
+        <mat-paginator
+          [pageSizeOptions]="[5, 10, 20, 30]"
+          showFirstLastButtons
+          aria-label="Página a seleccionar"
+        >
+          Página
+        </mat-paginator>
+        <!-- Paginadores a tabla-->
+      </div>
+      <!-- Cierre Tabla dinámica-->
+    </div>
+  </div>
+
+  <div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{ display: displayStyle }"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Ingreso de nuevo registro</h4>
+        </div>
+        <div class="modal-body">
+          <mat-form-field [color]="'warn'" class="matform">
+            <mat-label>User id</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="user.user_id"
+              placeholder="{{ user.user_id }}"
+            />
+          </mat-form-field>
+
+          <mat-form-field [color]="'warn'" class="matform">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="user.username"
+              placeholder="{{ user.username }}"
+            />
+          </mat-form-field>
+
+          <mat-form-field [color]="'warn'" class="matform">
+            <mat-label>Date</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="user.date"
+              placeholder="{{ user.date }}"
+            />
+          </mat-form-field>
+
+          <mat-form-field [color]="'warn'" class="matform">
+            <mat-label>Punch in</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="user.punchin"
+              placeholder="{{ user.punchin }}"
+            />
+          </mat-form-field>
+
+          <mat-form-field [color]="'warn'" class="matform">
+            <mat-label>Punch out</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="user.punchout"
+              placeholder="{{ user.punchout }}"
+            />
+          </mat-form-field>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closePopup()">
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="acceptNewUser()"
+          >
+            Aceptar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE ACTUALIZAR-->
+<div
+    class="modal"
+    tabindex="-1"
+    role="dialog"
+    [ngStyle]="{ display: displayStyle2 }"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Actualizar registro</h4>
+        </div>
+        <div class="modal-body">
+          <mat-form-field [color]="'warn'" class="matform">
+            <mat-label>User id</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="updateuser.user_id"
+              placeholder="{{ updateuser.user_id }}"
+            />
+          </mat-form-field>
+
+          <mat-form-field [color]="'warn'" class="matform">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="updateuser.username"
+              placeholder="{{ updateuser.username }}"
+            />
+          </mat-form-field>
+
+          <mat-form-field [color]="'warn'" class="matform">
+            <mat-label>Date</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="updateuser.date"
+              placeholder="{{ updateuser.date }}"
+            />
+          </mat-form-field>
+
+          <mat-form-field [color]="'warn'" class="matform">
+            <mat-label>Punch in</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="updateuser.punchin"
+              placeholder="{{ updateuser.punchin }}"
+            />
+          </mat-form-field>
+
+          <mat-form-field [color]="'warn'" class="matform">
+            <mat-label>Punch out</mat-label>
+            <input
+              matInput
+              type="text"
+              [(ngModel)]="updateuser.punchout"
+              placeholder="{{ updateuser.punchout }}"
+            />
+          </mat-form-field>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closePopup2()">
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="updateConfirm()"
+          >
+            Aceptar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+

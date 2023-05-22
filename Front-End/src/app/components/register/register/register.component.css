@@ -1,0 +1,65 @@
+
+
+h1 {
+  background-color: rgba(0, 0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+span {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.format_container_log{
+  margin-top: 25px;
+  margin-bottom: 25px;
+  width: 400px;
+  height: 400px;
+  background-color:rgba(46, 46, 46, 0.461); /*blanchedalmond*/
+  justify-content:center;
+  align-items: center;
+  display: flex;
+  border-radius: 20px;
+  opacity: 90%;
+}
+
+.logo{
+  width: 180px;
+  margin-bottom: 5px;
+}
+
+.body{
+max-width: 220px;
+width: 100%;
+text-align: center;
+}
+
+.material-icons {
+font-family: 'Material Icons';
+font-weight: normal;
+font-style: normal;
+font-size: 24px;  /* Preferred icon size */
+display: inline-block;
+line-height: 1;
+text-transform: none;
+letter-spacing: normal;
+word-wrap: normal;
+white-space: nowrap;
+direction: ltr;
+
+/* Support for all WebKit browsers. */
+-webkit-font-smoothing: antialiased;
+/* Support for Safari and Chrome. */
+text-rendering: optimizeLegibility;
+
+/* Support for Firefox. */
+-moz-osx-font-smoothing: grayscale;
+
+/* Support for IE. */
+font-feature-settings: 'liga';
+}
+
+.wrapper{
+display: flex;
+justify-content:center;
+align-items: center;
+height: 100%;
+}

@@ -1,0 +1,19 @@
+<body>
+  <div class="row g-0">
+      <div class="col-sm-7 d-none d-sm-block" >
+          <app-slider></app-slider>
+      </div>
+      <div class="col-5">
+          <div class="px-lg-5 pt-lg-4 ">
+              <!-- <img class="img-fluid logo" src="../../../../assets/img/SBEC_final.png" alt=""> -->
+              <app-con-login [hidden]="hide"></app-con-login>
+              <app-register [hidden]="!hide"></app-register>
+              <div class="contenedor_boton">
+              <button type="button" class="btn btn-light"  (click)="hide=!hide">
+                  Registrarse/loggearse
+              </button>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>

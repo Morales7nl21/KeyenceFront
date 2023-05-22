@@ -1,0 +1,39 @@
+
+<div class="container format_container_log">
+  <!-- Content here -->
+  <div class="box">
+      <div class="wrapper">
+          <div *ngIf="!is_loading" class="body">
+            <app-carga *ngIf="is_loading"></app-carga>
+
+
+
+           <div class="container_blanco">
+            <h1>Iniciar sesión</h1>
+
+            <div class="form-floating mb-3">
+              <mat-form-field [color]="'warn'" class="matform">
+                <mat-label>Usuario</mat-label>
+                <input matInput type="text" [(ngModel)]="usuario" placeholder="Usuario" />
+                <span class="material-icons" matSuffix >person</span>
+              </mat-form-field>
+            </div>
+
+              <div class="form-floating mb-3">
+                <mat-form-field [color]="'warn'" class="matform">
+                  <input matInput type="text" [(ngModel)]="contrasena" placeholder="Password" [type]="hide ? 'password': 'text'" />
+                  <mat-label>Contraseña</mat-label>
+                  <span class="material-icons" matSuffix (click)="hide = !hide">{{hide ? 'visibility': 'visibility_off'}}</span>
+                </mat-form-field>
+              </div>
+           </div>
+
+            <div>
+              <div class="d-grid gap-2">
+                <button type="button" (click)="logearse()" class="btn btn-sm btn-light bg-white" >Aceptar</button>
+              </div>
+            </div>
+          </div>
+  </div>
+</div>
+
